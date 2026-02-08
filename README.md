@@ -9,11 +9,8 @@ It lets users send and receive messages without revealing their identity — a s
 
 - 🕵️ Send & receive anonymous messages  
 - 🔐 Secure message handling  
-- 🛡️ Privacy-first design  
-- 🔗 Shareable message links  
-- 💬 Confessions & supportive messages  
-- 🌙 Modern dark mode UI  
-- 🚀 Lightweight & fast  
+- 🛡️ Privacy-first design    
+- 💬 Confessions & stories  
 
 ---
 
