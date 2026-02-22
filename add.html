@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lihim - Add Anonymous Post</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Roboto, sans-serif;
+    background-color: #121212;
+    color: #fff;
+  }
+  h1.cab {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 22px;
+    color: #F5F5F5;
+  }
+  form {
+    background-color: #1e1e1e;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  }
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #E0E0E0;
+  }
+  input[type="text"], input[type="file"], textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: none;
+    background-color: #2a2a2a;
+    color: #fff;
+    font-size: 16px;
+  }
+  textarea {
+    resize: vertical;
+    height: 30vh;
+  }
+  input::placeholder, textarea::placeholder {
+    color: #bbb;
+  }
+  button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #ff4c4c;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  button:hover {
+    background-color: #ff1f1f;
+  }
+  .msg_ok {
+    text-align: center;
+    margin-top: 20px;
+    color: #fff;
+    display: none;
+  }
+  .notice {
+    font-size: 12px;
+    color: #CCCCCC;
+    text-align: center;
+    margin-top: 15px;
+  }
+  .notice a {
+    color: #FF5252;
+    text-decoration: none;
+  }
+</style>
+<script src="https://www.socialcreator.com/jquery-1.11.3.min.js"></script>
+<script>
+$(document).ready(function(){
+  $('#form1').submit(function(e){
+    e.preventDefault();
+
+    // validation
+    var name = $('#c287069').val().trim();
+    var file = $('#c287070')[0].files[0];
+    var rants = $('#c287072').val().trim();
+
+    if(name === '') { alert('Please enter Name'); return false; }
+    if(!file) { alert('Please select Profile Picture'); return false; }
+    if(file && file.size > 10485760) { alert('Profile Picture is too big (Max 10MB)'); return false; }
+    if(rants === '') { alert('Please enter Your Rants'); return false; }
+
+    $('#btnenv').hide();
+
+    var data = new FormData(this);
+
+    $.ajax({
+      type: 'POST',
+      url: 'https://www.socialcreator.com/dom/form_enviando.php?s=324453',
+      data: data,
+      cache: false,
+      contentType: false,
+      processData: false,
+      success: function(result){
+        $('#dcontactar').hide();
+        $('#enviado').show();
+        window.scrollTo(0,0);
+      }
+    });
+  });
+});
+</script>
+</head>
+<body>
+
+<h1 class="cab">Add Anonymous Post</h1>
+
+<form name="form1" id="form1" enctype="multipart/form-data">
+  <div id="dcontactar">
+    <label for="c287069">Name <sup>*</sup></label>
+    <input name="c287069" id="c287069" type="text" maxlength="255" placeholder="Your Name">
+
+    <label for="c287070">Profile Picture <sup>*</sup></label>
+    <input name="c287070" id="c287070" type="file">
+    
+    <label for="c287072">Your Rants <sup>*</sup></label>
+    <textarea name="c287072" id="c287072" maxlength="1000" placeholder="Add your Rants now!"></textarea>
+
+    <a href="go:success">
+      <button type="submit" id="btnenv">PUBLISH RANTS</button>
+    </a>
+
+  </div>
+
+  <div id="enviado" class="msg_ok">
+    The form has been sent.
+  </div>
+
+  </div>
+</form>
+
+</body>
+</html>
